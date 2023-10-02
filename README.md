@@ -1,2 +1,11 @@
 # Curso SQL - Hotmart
  Detalhes do curso Aprenda a linguagem SQL com o Microsoft SQL SERVER. Conheça o poder do T-SQL com banco de dados que mais cresce. Pare tudo que está fazendo !!! Venha agora aprender a linguagem SQL com o melhor gerenciador de banco de dados do mercado de tecnologia, segundo relatório da empresa Gartner. O banco de dados da Microsoft é o líder no Quadrante Mágico do Gartner para SGBD Operacional pelo terceiro ano seguido!! Aprenda a montar consultas e realizar pesquisas da mais simples até as complexas, aplicando os conceitos corretos da maior linguagem para banco de dados relacional. Mas, por que devo aprender a linguagem SQL? Os bancos de dados relacionais são atualmente a maior plataforma de dados em uso no mercado de Tl e todos utilizam a linguagem SQL para manipulação de dados. Não conhecer essa linguagem é praticamente ficar fora do mercado de trabalho na área de tecnologia.
+
+ Ítalo Mesquita Vieira
+Trabalho utilizando a linguagem SQL desde o inicio de 2014, e me tornei especialista em T-SQL onde durante todo esse período venho participando de diversos projetos envolvendo otimização e criação de querys, integração e sincronização de dados entre sistemas, criação de rotinas para consumir API's de terceiros, construção de procedures, triggers, views, functions
+entre outros objetos dentro do banco de dados.
+Possuo ampla experiência em implantação de ERP, tendo participado diretamente de inúmeros projetos.
+Atualmente, além de trabalhar como especialista em desenvolvimento SQL, sou consultor Power Bl tendo fundado as empresas Análise Visual e Data Power's que tem como missão levar informações claras e objetivas para auxiliar os clientes nas tomadas de decisões minimizando gastos e maximizando lucros.
+Também administro um canal no YT, onde compartilho conhecimentos relacionados a linguagem T-SQL para ajudar principalmente quem está começando na área.
+Por último, e não menos importante, me tornei instrutor SQL ministrando cursos online e presenciais para diversas empresas e pessoas que tem como objetivo aprender a programar em SQL.
+https://hotmart.com/pt-br/marketplace/produtos/sql-server-developer-do-zero-ao-dw/B57947312D
