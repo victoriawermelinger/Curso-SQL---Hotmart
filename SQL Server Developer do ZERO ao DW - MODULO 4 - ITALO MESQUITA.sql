@@ -2,7 +2,7 @@
 -------------- MODULO 4 ----------------
 ----------------------------------------
 
--- NULL -> TOTALMENTE AUSENTE DE INFORMÇÃO 
+-- NULL -> TOTALMENTE AUSENTE DE INFORMï¿½ï¿½O 
 -- NULL <> '' (vazio)
 
 select CIDADE, ESTADO, MUNICIPIO, COMPLEMENTO
@@ -16,9 +16,9 @@ where COMPLEMENTO <> 'cnpj: 00.029.372/0007-36'
 SELECT CIDADE, ESTADO, MUNICIPIO, MUNICIPIO +10 
 FROM ENDERECOS
 
----------------------------FUNÇÕES------------------------
--- ISNULL() -> FUNÇÃO PARA TRATAR VALORES NULOS (NULL)
--- COALESCE() -> FUNÇÃO PADÃO ANSI PARA TRATAR VALOR NULOS (NULL)
+---------------------------FUNÃ§ÃµES------------------------
+-- ISNULL() -> FUNï¿½ï¿½O PARA TRATAR VALORES NULOS (NULL)
+-- COALESCE() -> FUNï¿½ï¿½O PADï¿½O ANSI PARA TRATAR VALOR NULOS (NULL)
 
 select CIDADE
 , ESTADO
@@ -70,7 +70,7 @@ SELECT CIDADE
 FROM ENDERECOS 
 WHERE MUNICIPIO IS NULL
 
--- RECUPERANDO APENAS VALORES NÃO NULOS 
+-- RECUPERANDO APENAS VALORES NAO NULOS 
 SELECT CIDADE
 , ESTADO 
 , MUNICIPIO
@@ -86,8 +86,8 @@ FROM ENDERECOS
 WHERE MUNICIPIO IS NOT NULL
 
 /*
--- NULLIF = A função NULLIF é usada para retornar NULL se dois valores forem iguais,
-	caso contrário, retorna o primeiro valor.
+-- NULLIF = A funï¿½ï¿½o NULLIF ï¿½ usada para retornar NULL se dois valores forem iguais,
+	caso contrï¿½rio, retorna oï¿½primeiroï¿½valor.
 */
 
 SELECT CIDADE
@@ -163,7 +163,7 @@ ORDER BY VALOR_UNITARIO DESC
 GETDATE = retorna a data e a hora atuais do sistema. 
 
 YEAR = ANO
-MONTH = MÊS
+MONTH = Mï¿½S
 DAY = DIA 
 */
 
@@ -181,11 +181,11 @@ FROM ENTIDADES
 ORDER BY ANO_CADASTRO
 
 /*
---DATEPART é uma função usada em SQL para extrair uma parte específica de uma 
-		data ou hora, como ano, mês, dia, hora, etc.
+--DATEPART ï¿½ uma funï¿½ï¿½o usada em SQL para extrair uma parte especï¿½fica de uma 
+		data ou hora, como ano, mï¿½s,ï¿½dia,ï¿½hora,ï¿½etc.
 
 YEAR = ANO 
-MONTH = MÊS
+MONTH = Mï¿½S
 DAY = DIA
 QUARTER = QUADRIMESTRE
 DAYOFYEAR = DIA E ANO 
@@ -220,8 +220,8 @@ ORDER BY ANO_CADASTRO
 
 
 /* 
-DATEADD =   é uma função utilizada em linguagens de programação e bancos de dados para adicionar uma quantidade específica de tempo a uma data.
-Ela permite adicionar anos, meses, dias, horas, minutos ou segundos a uma data existente.
+DATEADD =   ï¿½ uma funï¿½ï¿½o utilizada em linguagens de programaï¿½ï¿½o e bancos de dados para adicionar uma quantidade especï¿½fica de tempo a uma data.
+Ela permite adicionar anos, meses, dias, horas, minutos ou segundos a umaï¿½dataï¿½existente.
 */
 
 SELECT GETDATE() AS DATA_HORA_ATUAL
@@ -230,7 +230,7 @@ SELECT GETDATE() AS DATA_HORA_ATUAL
 , DAY(GETDATE())AS DIA
 , DATEPART(HOUR, GETDATE()) AS HORAS
 , DATEPART(MINUTE, GETDATE()) AS MINUTO
-, DATEPART(QUARTER, GETDATE()) AS NÃO 
+, DATEPART(QUARTER, GETDATE()) AS N
 , DATEPART(WEEK, GETDATE()) AS SEMANA 
 , DATEPART(WEEKDAY, GETDATE()) AS DIA_SEMANA 
 , DATEADD(YEAR,1 ,GETDATE())
@@ -242,10 +242,10 @@ SELECT TITULO
  FROM TITULOS_RECEBER
 
  /*
-DATEDIFF = é uma função utilizada em linguagens de programação e bancos de dados para calcular a diferença entre duas datas. 
-Ela retorna o número de unidades de tempo (anos, meses, dias, horas, minutos, segundos) entre as duas datas especificadas.
-EOMONTH = é uma função utilizada em linguagens de programação e bancos de dados para retornar a data do último dia do mês de uma data especificada. 
-Ela pode ser útil para cálculos relacionados a datas, como encontrar o último dia do mês para fins de faturamento ou planejamento.
+DATEDIFF = ï¿½ uma funï¿½ï¿½o utilizada em linguagens de programaï¿½ï¿½o e bancos de dados para calcular a diferenï¿½a entre duas datas. 
+Ela retorna o nï¿½mero de unidades de tempo (anos, meses, dias, horas, minutos, segundos) entre as duas datasï¿½especificadas.
+EOMONTH = ï¿½ uma funï¿½ï¿½o utilizada em linguagens de programaï¿½ï¿½o e bancos de dados para retornar a data do ï¿½ltimo dia do mï¿½s de uma data especificada. 
+Ela pode ser ï¿½til para cï¿½lculos relacionados a datas, como encontrar o ï¿½ltimo dia do mï¿½s para fins de faturamento ouï¿½planejamento.
 */
 
 SELECT GETDATE() AS DATA_HORA_ATUAL
@@ -254,7 +254,7 @@ SELECT GETDATE() AS DATA_HORA_ATUAL
 , DAY(GETDATE())AS DIA
 , DATEPART(HOUR, GETDATE()) AS HORAS
 , DATEPART(MINUTE, GETDATE()) AS MINUTO
-, DATEPART(QUARTER, GETDATE()) AS NÃO 
+, DATEPART(QUARTER, GETDATE()) AS N 
 , DATEPART(WEEK, GETDATE()) AS SEMANA 
 , DATEPART(WEEKDAY, GETDATE()) AS DIA_SEMANA 
 , DATEADD(YEAR,1 ,GETDATE())
@@ -286,12 +286,12 @@ SELECT TITULO
  FROM TITULOS_RECEBER
  
  /*
- UPPER = é utilizada para converter uma string para letras maiúsculas. Por exemplo, "hello" se tornaria "HELLO".
- LOWER = é utilizada para converter uma string para letras minúsculas. Por exemplo, "WORLD" se tornaria "world".
- REPLACE = é  utilizada para substituir uma substring por outra em uma string.
-	Por exemplo, replace("Hello, world!", "world", "universe") resultaria em "Hello, universe!".
- LEN = é utilizada para obter o comprimento de uma string, ou seja, o número de caracteres presentes na string. 
-	Por exemplo, len("hello") retornaria 5.
+ UPPER = ï¿½ utilizada para converter uma string para letras maiï¿½sculas. Por exemplo, "hello" se tornariaï¿½"HELLO".
+ LOWER = ï¿½ utilizada para converter uma string para letras minï¿½sculas. Por exemplo, "WORLD" se tornariaï¿½"world".
+ REPLACE = ï¿½  utilizada para substituir uma substring por outra em uma string.
+	Por exemplo, replace("Hello, world!", "world", "universe") resultaria em "Hello,ï¿½universe!".
+ LEN = ï¿½ utilizada para obter o comprimento de uma string, ou seja, o nï¿½mero de caracteres presentes na string. 
+	Por exemplo, len("hello")ï¿½retornariaï¿½5.
  */
  
  SELECT NOME
@@ -303,13 +303,13 @@ SELECT TITULO
  FROM ENTIDADES
 
  /*
- LEFT = retorn9a os primeiros caracteres de uma string. Ela é usada para extrair uma parte inicial da string com base na quantidade de caracteres desejada.
-	Por exemplo, LEFT("Hello", 3) retornaria "Hel".
- RIGTH = retorna os últimos caracteres de uma string. Ela é usada para extrair uma parte final da string com base na quantidade de caracteres desejada.
-	Por exemplo, RIGHT("Hello", 3) retornaria "llo".
- SUBSTRING =  usada para extrair uma parte específica de uma string. Ela requer três argumentos: a string original, a posição inicial e a quantidade de caracteres a serem extraídos. 
+ LEFT = retorn9a os primeiros caracteres de uma string. Ela ï¿½ usada para extrair uma parte inicial da string com base na quantidade de caracteres desejada.
+	Por exemplo, LEFT("Hello", 3) retornariaï¿½"Hel".
+ RIGTH = retorna os ï¿½ltimos caracteres de uma string. Ela ï¿½ usada para extrair uma parte final da string com base na quantidade de caracteres desejada.
+	Por exemplo, RIGHT("Hello", 3) retornariaï¿½"llo".
+ SUBSTRING =  usada para extrair uma parte especï¿½fica de uma string. Ela requer trï¿½s argumentos: a string original, a posiï¿½ï¿½o inicial e a quantidade de caracteres a serem extraï¿½dos. 
 	Por exemplo, SUBSTRING("Hello", 2, 3) retornaria "ell". 
-	Isso significa que a extração começaria na posição 2 da string original e pegaria os próximos 3 caracteres.
+	Isso significa que a extraï¿½ï¿½o comeï¿½aria na posiï¿½ï¿½o 2 da string original e pegaria os prï¿½ximosï¿½3ï¿½caracteres.
  */
 
  SELECT NOME
@@ -319,10 +319,10 @@ SELECT TITULO
  FROM ENTIDADES 
 
  /*
-CHARINDEX = é usada para encontrar a posição de uma substring dentro de uma string.
-TRIM = remove os espaços em branco tanto no início quanto no final da string.
-RTRIM = remove os espaços em branco do final da string.
-LTRIM = remove os espaços em branco do início da string.
+CHARINDEX = ï¿½ usada para encontrar a posiï¿½ï¿½o de uma substring dentroï¿½deï¿½umaï¿½string.
+TRIM = remove os espaï¿½os em branco tanto no inï¿½cio quanto no final da string.
+RTRIM = remove os espaï¿½os em branco do final da string.
+LTRIM = remove os espaï¿½os em branco do inï¿½cioï¿½daï¿½string.
  */
 
  SELECT LTRIM (' ITALO MESQUITA ')
@@ -350,16 +350,16 @@ TO
  PARCELA
  PRAZO
 
- APENAS DA ENTIDADE DE CÓDIGO 1824, SEGUINDO AS SEGUINTES REGRAS 
- 1. DOCUMENTO É O VALOR CONTIDO NO CAMPO TÍTULO ANTES DA "/"
- 2. A PARCELA É O VALOR CONTIDO NO CAMPO TÍTULO APÓS A "/"
- 3. O PRAZO É A DIFERENÇA EM DIAS ENTRE O MOVIMENTO E O VENCIMENTO 
- 4.ORDENE AS INFOMAÇÕES PELO PRAZO EM ORDEM DECRESCENTE 
+ APENAS DA ENTIDADE DE Cï¿½DIGO 1824, SEGUINDO AS SEGUINTES REGRAS 
+ 1. DOCUMENTO ï¿½ O VALOR CONTIDO NO CAMPO Tï¿½TULO ANTES DA "/"
+ 2. A PARCELA ï¿½ O VALOR CONTIDO NO CAMPO Tï¿½TULO APï¿½S A "/"
+ 3. O PRAZO ï¿½ A DIFERENï¿½A EM DIAS ENTRE O MOVIMENTO E O VENCIMENTO 
+ 4.ORDENE AS INFOMAï¿½ï¿½ES PELO PRAZO EM ORDEM DECRESCENTE 
  */
 
  SELECT ENTIDADE
  ,  TITULO
- , CHARINDEX ('/', TITULO) AS POSSIÇÃO_BARRA 
+ , CHARINDEX ('/', TITULO) AS POSSICAO_BARRA 
  , SUBSTRING(TITULO, 1, CHARINDEX ('/', TITULO) -1) AS DOCUMENTO
  , SUBSTRING(TITULO, CHARINDEX ('/', TITULO) +1, LEN(TITULO) - CHARINDEX ('/', TITULO)) AS PARCELA
  , DATEDIFF(DAY, MOVIMENTO, VENCIMENTO) AS PRAZO
@@ -367,8 +367,62 @@ TO
   where ENTIDADE = 1824
   ORDER BY PRAZO DESC
 
+  -- FUNÃ‡Ã•ES DE AGREGAÃ‡ÃƒO 
+  /*
+  SUM --  SOMA VALORES DE UMA COLUNA 
+  MIN --  MENOR VALOR DE UMA COLUNA 
+  MAX --  MAIOR VALOR DE UMA COLUNA
+  AVG --  MÃ‰DIA DA COLUNA 
+COUNT --  CONTA VALORES RESULTANTES DE UMA QUERY
+  */
+
+SELECT SUM(QUANTIDADE) AS SOMA_QUANTIDADE_TOTAL 
+, MIN(QUANTIDADE) AS MENOR_QUANTIDADE
+, MAX(QUANTIDADE) AS MAIOR_QUANTIDADE
+, AVG(QUANTIDADE) AS MEDIA_QUANTIDADE
+, COUNT(QUANTIDADE) AS VALORES_RESULTANTES 
+   FROM VENDAS_ANALITICAS
+
+select PRODUTO
+, CLIENTE
+, sum(QUANTIDADE) as total_vendido
+, avg(quantidade) as media 
+, count(*) as quantidade_compras 
+   from VENDAS_ANALITICAS
+  where produto = 34902
+  group by produto, cliente
+
+select cliente
+, count(distinct produto)
+from VENDAS_ANALITICAS
+group by cliente 
+
+select distinct produto
+ from VENDAS_ANALITICAS
+where cliente = 1983
+
+-- Filtrando valores agregados atravÃ©s da clÃ¡usula HAVING
+
+SELECT PRODUTO
+, CLIENTE
+, SUM(QUANTIDADE) AS QUANTIDADE
+, SUM(VENDA_BRUTA) AS VENDA_BRUTA
+   FROM VENDAS_ANALITICAS
+   where produto = 34902
+group by produto , cliente 
+having SUM(QUANTIDADE) >10
+	and sum(VENDA_BRUTA)<>65.000
+order by QUANTIDADE
 
 
+/* Ordem lÃ³gica de execuÃ§Ã£o */
+
+-- from 
+-- where
+-- group by 
+-- having
+-- select
+-- order by 
 
 
 
