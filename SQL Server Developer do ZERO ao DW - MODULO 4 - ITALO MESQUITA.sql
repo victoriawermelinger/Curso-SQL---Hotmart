@@ -415,18 +415,144 @@ having SUM(QUANTIDADE) >10
 order by QUANTIDADE
 
 
-/* Ordem lógica de execução */
-
+/* Ordem lógica de execução 
 -- from 
 -- where
 -- group by 
 -- having
 -- select
 -- order by 
+*/
+----------------------------------------------
+---DESAFIO---
+/* RECUPERE AS INFOMAÇÕES DE:
+1. CLIENTE 
+2. QUANTIDADE_TOTAL (SOMA DA COLUNA QUANTIDADE)
+3. VENDAS_LIQUIDAS_TOTAL (SOMA DA COLUNA VENDA LIQUIDA)
+4. ITENS_COMPRADOS (CONTAGEM DESTITA DOS PRODUTOS ADIQUIRIDOS PELO CLIENTE)
+
+* AS VENDAS DEVEM SER APENAS DO VENDEDOR DE CODIGO 
+* A CONSULTA DEVERA TRAZER APENAS OS CLIENTES QUE TEVERAM ITENS_COMPRADOS SUPERIOR A 50
+* ORDENE A CONSULTA PELOS ITENS_COMPRADOS SENDO DO MAIOR PARA O MENOR
+-> TEBELA: VENDAS_ANALITICAS
+*/
+
+select * from VENDAS_ANALITICAS
+
+select CLIENTE as cliente
+, sum (QUANTIDADE) as quantidade_total
+, sum (VENDA_LIQUIDA) as venda_liquida_total
+, count (distinct PRODUTO) as intens_comprados 
+from VENDAS_ANALITICAS
+where VENDEDOR = 1 
+group by CLIENTE
+having count (distinct PRODUTO) > 50
+order by quantidade_total desc
+
+-- CASE WHER
+/*
+MENOR OU IGUAL A 0 -> SEM COMISSAO
+ENTRE 1 A 500	   -> 1% DE COMISSAO
+ENTRE 500 E 10K	   -> 2% DE COMISSAO
+ACIMA DE 10K	   -> 3% DE COMISSAO 
+*/
+-- pra vendas nulas 
+select VENDEDOR
+, VENDA_LIQUIDA
+, case when coalesce( VENDA_LIQUIDA, 0)  <= 0
+then 'sem comissão'
+	when VENDA_LIQUIDA between 1 and 500
+	then '1%'
+	when VENDA_LIQUIDA >= 501 and VENDA_LIQUIDA <= 10000 --between 501 and 10000
+	then '2%'
+	else '3%'
+ end
+from VENDAS_ANALITICAS
+where VENDEDOR is not null
+
+select VENDEDOR
+, VENDA_LIQUIDA
+, case when VENDA_LIQUIDA <= 0
+	then 'sem comissão'
+	when VENDA_LIQUIDA between 1 and 500
+	then '1%'
+	when VENDA_LIQUIDA >= 501 and VENDA_LIQUIDA <= 10000 --between 501 and 10000
+	then '2%'
+	else '3%'
+ end as comissao_aplicada 
+from VENDAS_ANALITICAS
+where VENDEDOR is not null
+
+--Com a Comissao ja calculada 
+select VENDEDOR
+, VENDA_LIQUIDA
+, case when VENDA_LIQUIDA <= 0
+	then 'sem comissão'
+	when VENDA_LIQUIDA between 1 and 500
+	then '1%'
+	when VENDA_LIQUIDA >= 501 and VENDA_LIQUIDA <= 10000 --between 501 and 10000
+	then '2%'
+	else '3%'
+ end as comissao_aplicada 
+  , case when VENDA_LIQUIDA <= 0
+	then 0.00
+	when VENDA_LIQUIDA between 1 and 500
+	then VENDA_LIQUIDA * 1/100
+	when VENDA_LIQUIDA >= 501 and VENDA_LIQUIDA <= 10000
+	then VENDA_LIQUIDA * 2/100
+	else VENDA_LIQUIDA * 3/100
+ end as valor_comissao
+from VENDAS_ANALITICAS
+where VENDEDOR is not null
+
+-- comisao por tempo 
+select VENDEDOR
+, sum(venda_liquida) as vendas_liquidas
+, case when sum (VENDA_LIQUIDA) <= 0
+	then 'sem comissão'
+	when sum(VENDA_LIQUIDA) between 1 and 500
+	then '1%'
+	when sum (VENDA_LIQUIDA) >= 501 and sum(VENDA_LIQUIDA) <= 10000 
+	then '2%'
+	else '3%'
+ end as comissao_aplicada 
+from VENDAS_ANALITICAS
+where VENDEDOR is not null
+	 and MOVIMENTO between '01/01/2020' and '31/01/2020'
+group by VENDEDOR
 
 
+-- tempo e o valor acumulado 
+select VENDEDOR
+, sum(venda_liquida) as vendas_liquidas
+, case when sum (VENDA_LIQUIDA) <= 0
+	then 'sem comissão'
+	when sum(VENDA_LIQUIDA) between 1 and 500
+	then '1%'
+	when sum (VENDA_LIQUIDA) >= 501 and sum(VENDA_LIQUIDA) <= 10000 
+	then '2%'
+	else '3%'
+end as comissao_aplicada
+, case when sum (VENDA_LIQUIDA) <= 0
+	then 0.00
+	when sum (VENDA_LIQUIDA) between 1 and 500
+	then sum (VENDA_LIQUIDA) * 1/100
+	when sum (VENDA_LIQUIDA) >= 501 and sum (VENDA_LIQUIDA) <= 10000
+	then sum (VENDA_LIQUIDA) * 2/100
+	else sum (VENDA_LIQUIDA) * 3/100
+end as valor_comissao
+from VENDAS_ANALITICAS
+where VENDEDOR is not null
+	 and MOVIMENTO between '01/01/2020' and '31/01/2020'
+group by VENDEDOR
 
+--IIF 
+SELECT VENDEDOR
+, QUANTIDADE
+, case when QUANTIDADE > 0 then 'venda' else 'devolucao' end as tipo 
+, iif (quantidade > 0, 'venda' , 'devolução') as tipo_02
+FROM VENDAS_ANALITICAS
+WHERE VENDEDOR IS NOT NULL
 
-
-
-
+-- CAST 
+-- CONVERT 
