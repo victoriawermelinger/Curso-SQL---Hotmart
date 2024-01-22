@@ -1,6 +1,5 @@
-----------------------------------------
--------------- MODULO 4 ----------------
-----------------------------------------
+use PBS_PROCFIT_DADOS
+-- MODULO 4 --
 
 -- NULL -> TOTALMENTE AUSENTE DE INFORM��O 
 -- NULL <> '' (vazio)
