@@ -31,3 +31,13 @@ JOIN ENTIDADES B ON A.CLIENTE = B.ENTIDADE
 GROUP BY B.ENTIDADE, B.NOME
 
 select*from #TBLclientesVenda
+
+SELECT B.ENTIDADE		as entidade
+, B.NOME				as nome_cliente
+, SUM(A.VENDA_LIQUIDA)	as total_vendido
+ INTO ##TBLclientesVendag
+FROM VENDAS_ANALITICAS A
+JOIN ENTIDADES B ON A.CLIENTE = B.ENTIDADE
+GROUP BY B.ENTIDADE, B.NOME
+
+select*from ##TBLclientesVendag
