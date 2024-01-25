@@ -276,6 +276,7 @@ FROM ENTIDADES
 SELECT*FROM #TEMP_02
 
 --Criando uma CTE (FAZER EM UMA CONSULTA SEPARADA)
+/*
 WITH CTE_PRODUTOS_ESTOQUE AS ( select PRODUTO
 , sum(ESTOQUE_ENTRADA) - sum(ESTOQUE_SAIDA) as SALDO_ESTOQUE
 from ESTOQUE_LANCAMENTOS
@@ -300,4 +301,65 @@ SELECT A.PRODUTO AS COD_PRODUTO
 FROM PRODUTOS A
 LEFT JOIN CTE_PRODUTOS_VENDIDOS B ON A.PRODUTO = B.PRODUTO
 LEFT JOIN CTE_PRODUTOS_ESTOQUE C ON A.PRODUTO = C.PRODUTO
+
+-------------------------------------------------------------------
+WITH CTE_PRODUTOS_ESTOQUE (CODPRODUTO,SALDOESTOQUE)AS 
+( select PRODUTO
+, sum(ESTOQUE_ENTRADA) - sum(ESTOQUE_SAIDA) as SALDO_ESTOQUE
+from ESTOQUE_LANCAMENTOS
+group by PRODUTO
+) , CTE_PRODUTOS_VENDA (CODPRODUTO, QTVENDIDA) AS (select PRODUTO
+, sum(QUANTIDADE) as QUANTIDADE_VENDIDA
+from VENDAS_ANALITICAS
+group by PRODUTO)
+
+SELECT*FROM CTE_PRODUTOS_ESTOQUE
+*/
+
+-- Principais diferenças entre CTE's e temporárias:
+/*As CTEs (Common Table Expressions) e as tabelas temporárias são duas formas diferentes de armazenar dados temporariamente em consultas SQL. Aqui estão algumas das principais diferenças entre elas:
+
+Escopo de Utilização:
+
+CTEs: O escopo de uma CTE é apenas a consulta em que ela é definida. A CTE é usada apenas na consulta imediatamente após sua definição.
+Tabelas Temporárias: Elas têm um escopo mais amplo e podem ser utilizadas em várias consultas na mesma sessão do banco de dados.
+Tempo de Vida dos Dados:
+
+CTEs: Existem apenas durante a execução da consulta à qual estão associadas. Após o término da consulta, a CTE deixa de existir.
+Tabelas Temporárias: Existem até o final da sessão do banco de dados ou até serem explicitamente removidas. Elas podem ser utilizadas por várias consultas dentro da mesma sessão.
+Sintaxe:
+
+CTEs: São definidas usando a cláusula WITH no início de uma consulta. Podem ser referenciadas dentro da própria consulta usando o nome atribuído a elas.
+Tabelas Temporárias: São criadas explicitamente usando a instrução CREATE TABLE #NomeDaTabela. Elas têm um nome e podem ser referenciadas em várias consultas até serem eliminadas.
+Recursividade:
+
+CTEs: Podem ser recursivas, o que permite referenciar a CTE dentro de sua própria definição, útil para operações hierárquicas.
+Tabelas Temporárias: Não possuem suporte direto para operações recursivas.
+Índices e Estatísticas:
+
+CTEs: Não podem ter índices ou estatísticas diretamente associados a elas.
+Tabelas Temporárias: Podem ter índices e estatísticas, o que pode melhorar o desempenho em consultas complexas.
+Simplicidade e Legibilidade:
+
+CTEs: São mais adequadas para consultas simples e legíveis, especialmente quando se trata de consultas recursivas ou operações mais lógicas.
+Tabelas Temporárias: São mais adequadas quando você precisa armazenar uma grande quantidade de dados temporários ou quando precisa realizar várias operações complexas em várias etapas.
+A escolha entre CTEs e tabelas temporárias dependerá da complexidade da sua consulta, do escopo desejado e da necessidade de armazenar dados temporários em diferentes consultas. Ambas têm seus usos específicos e podem ser ferramentas poderosas em diferentes contextos.
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
