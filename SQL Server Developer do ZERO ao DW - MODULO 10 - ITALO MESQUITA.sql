@@ -98,3 +98,19 @@ WHERE B.ENDERECO<> ''
 
 -- COMMIT (REVERTE A OPERAÇÃO)
 -- ROLLBACK (CONFIRMA A OPERAÇÃO)
+
+----------------------------------------------------------------------------
+--DELETE - Apagando registros
+
+SELECT * FROM VENDEDORES
+WHERE VENDEDOR = 23
+AND DESCONTO_MAXIMO_PMC = 0
+
+BEGIN TRAN
+DELETE VENDEDORES 
+ WHERE VENDEDOR = 23
+  AND DESCONTO_MAXIMO_PMC = 0
+
+--COMMIT 
+--DELETE - Apagando registros com instruções SELECT
+
