@@ -46,11 +46,29 @@ SELECT NOME
  FROM ENTIDADES
 WHERE ENTIDADE BETWEEN 1004 AND 1050
 
--- 2014 PARA TRÁS 10% 
+-- 2014 PARA TRAS 10% 
 -- 2015 5% DE DESCONTO 
 -- DEPOIS DE 2015 0.00
 
---BEGIN TRANSACTION (BEGIN TRAN) representa um ponto no qual os dados referenciados por uma conexão são lógica e fisicamente consistentes. Se forem encontrados erros, todas as modificações de dados feitas depois do BEGIN TRANSACTION poderão ser revertidas para voltar os dados ao estado conhecido de consistência
---SELECT * FROM VENDEDORES WITH(NOLOCK)  Se o seu SGBD permitir, utilize NOLOCK quando deseja visualizar dados não confirmados e não quando deseja trabalhar somente com os dados que estão confirmados de fato
---ROLLBACK remove todas as alterações feitas desde a última operação de confirmação ou rollback. O sistema também libera todos os bloqueios relacionados à transação. 
---COMMIT são as unidades estruturais de um cronograma de projeto Git.
+--BEGIN TRANSACTION (BEGIN TRAN) representa um ponto no qual os dados referenciados por uma conexao sao logica e fisicamente consistentes. Se forem encontrados erros, todas as modificaçoes de dados feitas depois do BEGIN TRANSACTION poderao ser revertidas para voltar os dados ao estado conhecido de consistencia
+--SELECT * FROM VENDEDORES WITH(NOLOCK)  Se o seu SGBD permitir, utilize NOLOCK quando deseja visualizar dados nao confirmados e nao quando deseja trabalhar somente com os dados que estao confirmados de fato
+--ROLLBACK remove todas as alteraçoes feitas desde a ultima operaçao de confirmaçao ou rollback. O sistema tambem libera todos os bloqueios relacionados a transaçao. 
+--COMMIT sao as unidades estruturais de um cronograma de projeto Git.
+
+SELECT DESCONTO_MAXIMO_PMC, * 
+FROM VENDEDORES 
+WHERE VENDEDOR IN (1,2)
+
+BEGIN TRAN
+UPDATE VENDEDORES
+SET DESCONTO_MAXIMO_PMC = 100
+WHERE VENDEDOR IN (1,2)
+
+BEGIN TRAN 
+UPDATE VENDEDORES
+SET DESCONTO_MAXIMO_PMC = 0
+FROM VENDEDORES 
+WHERE VENDEDOR IN (1,2)
+
+-- COMMIT 
+-- ROLLBACK
