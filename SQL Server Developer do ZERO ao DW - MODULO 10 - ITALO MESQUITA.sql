@@ -55,6 +55,8 @@ WHERE ENTIDADE BETWEEN 1004 AND 1050
 --ROLLBACK remove todas as alteraçoes feitas desde a ultima operaçao de confirmaçao ou rollback. O sistema tambem libera todos os bloqueios relacionados a transaçao. 
 --COMMIT sao as unidades estruturais de um cronograma de projeto Git.
 
+-- UPDATE 
+
 SELECT DESCONTO_MAXIMO_PMC, * 
 FROM VENDEDORES 
 WHERE VENDEDOR IN (1,2)
@@ -72,3 +74,27 @@ WHERE VENDEDOR IN (1,2)
 
 -- COMMIT 
 -- ROLLBACK
+
+--UPDATE - Atualizando registros com instrução SELECT
+
+SELECT A.CEP
+, B.CEP
+, A.ENDERECO AS ENDERECO_ANTIGO 
+, B. ENDERECO AS ENDERECO_NOVO
+, A. CIDADE AS CIDADE_ANTIGA 
+, A. CIDADE AS CIDADE_NOVA
+FROM ENDERECOS A
+JOIN CEP B ON A.CEP = B.CEP
+WHERE B.ENDERECO<> ''
+AND B.ENDERECO <> A.ENDERECO
+
+BEGIN TRAN
+UPDATE ENDERECOS
+SET ENDERECO = B. ENDERECO 
+, CIDADE = B.CIDADE
+FROM ENDERECOS A
+JOIN CEP B ON A.CEP = B.CEP
+WHERE B.ENDERECO<> ''
+
+-- COMMIT (REVERTE A OPERAÇÃO)
+-- ROLLBACK (CONFIRMA A OPERAÇÃO)
