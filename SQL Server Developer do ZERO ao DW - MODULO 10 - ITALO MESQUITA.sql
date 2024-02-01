@@ -114,3 +114,32 @@ DELETE VENDEDORES
 --COMMIT 
 --DELETE - Apagando registros com instruções SELECT
 
+select * from PRODUTOS
+select * from MARCAS
+
+select a.MARCA
+, b.PRODUTO
+from MARCAS a 
+left join produtos b on a.MARCA = b.MARCA
+where b.PRODUTO is null 
+
+begin tran 
+delete 
+from MARCAS
+from MARCAS a  left join produtos b on a.MARCA = b.MARCA
+where b.PRODUTO is null 
+
+begin tran 
+delete MARCAS
+from MARCAS a  left join produtos b on a.MARCA = b.MARCA
+where b.PRODUTO is null 
+ 
+begin tran
+delete from MARCAS 
+where MARCA in (select a.MARCA
+, b.PRODUTO
+from MARCAS a 
+left join produtos b on a.MARCA = b.MARCA
+where b.PRODUTO is null)
+
+-- rollback
