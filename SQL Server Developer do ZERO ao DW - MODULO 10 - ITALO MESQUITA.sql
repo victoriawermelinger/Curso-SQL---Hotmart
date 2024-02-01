@@ -142,4 +142,20 @@ from MARCAS a
 left join produtos b on a.MARCA = b.MARCA
 where b.PRODUTO is null)
 
--- rollback
+begin tran
+delete  MARCAS 
+where MARCA in (select a.MARCA
+, b.PRODUTO
+from MARCAS a 
+left join produtos b on a.MARCA = b.MARCA
+where b.PRODUTO is null)
+
+begin tran
+delete  MARCAS 
+where MARCA not in (select a.MARCA
+, b.PRODUTO
+from MARCAS a 
+left join produtos b on a.MARCA = b.MARCA
+where b.PRODUTO is null)
+
+--rollback 
