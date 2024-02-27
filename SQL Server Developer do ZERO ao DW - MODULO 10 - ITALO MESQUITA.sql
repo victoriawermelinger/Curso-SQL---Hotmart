@@ -183,8 +183,12 @@ WHEN NOT MATCHED BY
 SOURCE DELETE; 
 
 -- rotina com INSERT, UPDATE e DELETE 
+
+	-- sicronizar todas as entidades PF com a tabela de pessoas físicas 
+	-- sicronizar todas as entidades PJ com a tabela de pessoas juríticas 
+
 /*
-ENTIDADES=PESSOAS_FISICAS + PESSOAS_JURITICAS 
+ENTIDADES = PESSOAS_FISICAS + PESSOAS_JURITICAS 
 PESSOAS_FISICAS
 PESSOAS_JURITICAS 
 *//*
