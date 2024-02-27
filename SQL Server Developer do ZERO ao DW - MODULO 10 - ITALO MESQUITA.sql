@@ -328,5 +328,5 @@ values (
 ,o.CADASTRO_ATIVO
 ,o.CLASSIFICACAO_CLIENTE
 ,o.DATA_CADASTRO
-)
-when not matched by source then delete;
+);
+--when not matched by source then delete;
