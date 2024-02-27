@@ -283,7 +283,7 @@ DELETE from PESSOAS_FISICAS
 
 
 -- CRIANDO ROTINA COM MERGE 
-IF 
+IF OBJECT_ID ('tempdb..#ATUALIZACAO_II') IS NOT NULL DROP TABLE #ATUALIZACAO_II
 select ENTIDADE
 , NOME
 , NOME_FANTASIA
@@ -296,7 +296,16 @@ select ENTIDADE
 from ENTIDADES a 
 where len (a.INSCRICAO_FEDERAL) = 14
 
-
+merge pessoas_fisicas d
+USING #ATUALIZACAO_II o on d.entidade = o.entidade
+when matched then 
+		UPDATE SET NOME						= O.NOME
+				  ,NOME_FANTASIA			= O.NOME_FANTASIA
+				  ,INSCRICAO_FEDERAL		= O.INSCRICAO_FEDERAL
+				  ,INSCRICAO_ESTADUAL		= O.INSCRICAO_ESTADUAL
+				  ,CADASTRO_ATIVO			= O.CADASTRO_ATIVO
+				  ,CLASSIFICACAO_CLIENTE	= O.CLASSIFICACAO_CLIENTE
+				  				   
 when not matched by target then 
 insert (
  ENTIDADE
@@ -320,3 +329,4 @@ values (
 ,o.CLASSIFICACAO_CLIENTE
 ,o.DATA_CADASTRO
 )
+when not matched by source then delete;
