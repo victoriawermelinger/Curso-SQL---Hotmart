@@ -28,8 +28,8 @@ where nome = 'Samara'
 */
 
 select * 
-, isnull (Apelido, Nome)
-, case when nullif( trim (apelido), '') is null then Nome else Apelido end 
+	, isnull (Apelido, Nome)
+	, case when nullif( trim (apelido), '') is null then Nome else Apelido end 
 from  tblnomes
 
 
