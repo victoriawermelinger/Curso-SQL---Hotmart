@@ -1,7 +1,7 @@
 use PBS_PROCFIT_DADOS
 
 -- CRIANDO A PRIMEIRA FUNÇÃO 
-
+/*
 declare @V1 varchar(10) = 'Italo'
 declare @V2 varchar(10) = 'Maria'
 
@@ -15,7 +15,7 @@ create table tblnomes (
 
 
 select * from tblnomes
-/*
+
 insert into tblnomes (Nome, Apelido)
 values  ('Victoria', ' Vicky')
 ,		('Matheus', 'Teteus')
@@ -26,3 +26,21 @@ update tblnomes
 set Apelido = null
 where nome = 'Samara'
 */
+
+select * 
+, isnull (Apelido, Nome)
+, case when nullif( trim (apelido), '') is null then Nome else Apelido end 
+from  tblnomes
+
+
+
+
+
+
+
+
+
+
+
+
+
