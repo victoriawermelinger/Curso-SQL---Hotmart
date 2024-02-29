@@ -32,7 +32,8 @@ select *
 	, case when nullif( trim (apelido), '') is null then Nome else Apelido end 
 from  tblnomes
 
-
+declare @v1 varchar(50) = '
+declare @v2 varchar(50) = '
 
 
 
