@@ -82,3 +82,38 @@ from  tblnomes
 
 --Fixando a sintexe das funções 
 
+select ENTIDADE
+, INSCRICAO_FEDERAL
+, replace(replace( replace ( INSCRICAO_FEDERAL, '.' , ''), '-', ''),'/' ,'')
+, len (replace(replace( replace ( INSCRICAO_FEDERAL, '.' , ''), '-', ''),'/' ,''))
+, case when len (replace(replace( replace ( INSCRICAO_FEDERAL, '.' , ''), '-', ''),'/' ,'')) = 14
+	then 'PJ'
+	when len (replace(replace( replace ( INSCRICAO_FEDERAL, '.' , ''), '-', ''),'/' ,'')) = 12
+	then 'PF'
+	else 'ND'
+ end 
+							-- duas formas de usar o case when. 
+, case len (replace(replace( replace ( INSCRICAO_FEDERAL, '.' , ''), '-', ''),'/' ,''))
+	when 14 then 'PJ'
+	when 11 then 'PF'
+	else 'ND' 
+ end 
+ , dbo.FN_TIPO_INSCRIÇÃO(inscricao_federal)
+ from ENTIDADES
+--where INSCRICAO_FEDERAL is not null 
+
+
+create function FN_TIPO_INSCRIÇÃO(@INSCRICAO_FEDERAL VARCHAR(50))
+RETURNS CHAR(2)
+as begin
+	declare @tipo_inscricao char(2)
+set @INSCRICAO_FEDERAL = replace(replace( replace ( @INSCRICAO_FEDERAL, '.' , ''), '-', ''),'/' ,'')
+set @tipo_inscricao = case len(@INSCRICAO_FEDERAL)
+								when 14 then 'PJ'
+								when 11 then 'PF'
+								else 'ND' 
+							 end 
+return @tipo_inscricao 
+
+end
+
