@@ -43,9 +43,39 @@ select @v1 , @v2
 select case when @v1 is null then @v2 else @v1 end 
 
 --- criando função 
-
+/*
 create function Fn_isnull(@v1 varchar(50), @v2 varchar(50))
 returns varchar(50) 
 as begin 
 -- texto da função ou a ação que ela vai fazer 
 end 
+*/
+/*
+create function Fn_isnull(@v1 varchar(50), @v2 varchar(50))
+returns varchar(50) 
+as begin 
+declare @retorno varchar(50)
+
+set @v1 = nullif(trim (@v1), '')
+set @v2 = nullif(trim (@v2), '')
+-- set @retorno = case when @v1 is null then @v2 else @v1 end
+select @retorno = case when @v1 is null then @v2 else @v1 end
+--return (select case when @v1 is null then @v2 else @v1 end) 
+end
+*/
+----------
+create function Fn_isnull(@v1 varchar(50), @v2 varchar(50))
+returns varchar(50) 
+as begin 
+declare @retorno varchar(50)
+
+set @v1 = nullif(trim (@v1), '')
+set @v2 = nullif(trim (@v2), '')
+return (select case when @v1 is null then @v2 else @v1 end) 
+end 
+
+select * 
+	, isnull (Apelido, Nome)
+	, case when nullif( trim (apelido), '') is null then Nome else Apelido end 
+	, dbo.fn_isnull (apelido, nome)
+from  tblnomes
