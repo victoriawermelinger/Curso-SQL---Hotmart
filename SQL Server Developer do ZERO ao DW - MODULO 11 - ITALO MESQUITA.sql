@@ -32,16 +32,20 @@ select *
 	, case when nullif( trim (apelido), '') is null then Nome else Apelido end 
 from  tblnomes
 
-declare @v1 varchar(50) = '
-declare @v2 varchar(50) = '
+declare @v1 varchar(50) = 'Victoria'
+declare @v2 varchar(50) = ' Samara'
 
+set @v1 = nullif(trim (@v1), '')
+set @v2 = nullif(trim (@v2), '')
 
+select @v1 , @v2
 
+select case when @v1 is null then @v2 else @v1 end 
 
+--- criando função 
 
-
-
-
-
-
-
+create function Fn_isnull(@v1 varchar(50), @v2 varchar(50))
+returns varchar(50) 
+as begin 
+-- texto da função ou a ação que ela vai fazer 
+end 
