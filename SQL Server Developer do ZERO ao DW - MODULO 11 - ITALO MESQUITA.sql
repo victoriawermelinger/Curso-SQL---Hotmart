@@ -79,3 +79,6 @@ select *
 	, case when nullif( trim (apelido), '') is null then Nome else Apelido end 
 	, dbo.fn_isnull (apelido, nome)
 from  tblnomes
+
+--Fixando a sintexe das funções 
+
