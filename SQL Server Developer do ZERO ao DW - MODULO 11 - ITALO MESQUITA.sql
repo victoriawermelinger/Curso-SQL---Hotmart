@@ -142,3 +142,44 @@ end
 select [dbo].[FN_MASCARA_CPF] (123456789) 
 
 -- procedures são frequentemente usados para se referir a blocos de código que realizam uma tarefa específica. Eles podem ser chamados em diferentes partes de um programa para executar a mesma operação.
+-- Criando procedures com retorno
+	--> Armazene um dim_clientes 
+
+create procedure USP_retorna_clientes
+as begin 
+select a.ENTIDADE				as entidade
+	 , a.NOME					as nome 
+	 , a.NOME_FANTASIA			as nome_fantasia
+	 , a.INSCRICAO_FEDERAL		as inscricao_federal
+	 , b.DESCRICAO				as classif_cliente
+	 , c.CIDADE					as cidade
+	 , d.NOME					as estado 
+	 , c.ESTADO					as UF
+from ENTIDADES a 
+left join CLASSIFICACOES_CLIENTES b on a.CLASSIFICACAO_CLIENTE = b.CLASSIFICACAO_CLIENTE
+left join ENDERECOS	c				on a.ENTIDADE = c.ENTIDADE
+left join ESTADOS d					on c.ESTADO = d.ESTADO
+end
+
+/*
+ctrt + N -- nova consulta 
+execute usp_retorna_clientes
+exec usp_retorna_clientes
+*/
+
+create procedure USP_retorna_clientes_parametros(@uf char(2))
+as begin 
+select a.ENTIDADE				as entidade
+	 , a.NOME					as nome 
+	 , a.NOME_FANTASIA			as nome_fantasia
+	 , a.INSCRICAO_FEDERAL		as inscricao_federal
+	 , b.DESCRICAO				as classif_cliente
+	 , c.CIDADE					as cidade
+	 , d.NOME					as estado 
+	 , c.ESTADO					as UF
+from ENTIDADES a 
+left join CLASSIFICACOES_CLIENTES b on a.CLASSIFICACAO_CLIENTE = b.CLASSIFICACAO_CLIENTE
+left join ENDERECOS	c				on a.ENTIDADE = c.ENTIDADE
+left join ESTADOS d					on c.ESTADO = d.ESTADO
+ where c.ESTADO = @uf
+end
