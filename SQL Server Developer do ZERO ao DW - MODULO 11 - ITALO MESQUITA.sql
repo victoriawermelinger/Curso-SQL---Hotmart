@@ -81,7 +81,7 @@ select *
 from  tblnomes
 
 --Fixando a sintexe das funções 
-
+	
 select ENTIDADE
 , INSCRICAO_FEDERAL
 , replace(replace( replace ( INSCRICAO_FEDERAL, '.' , ''), '-', ''),'/' ,'')
@@ -102,7 +102,7 @@ select ENTIDADE
  from ENTIDADES
 --where INSCRICAO_FEDERAL is not null 
 
-
+	-- função tipo de inscrição
 create function FN_TIPO_INSCRIÇÃO(@INSCRICAO_FEDERAL VARCHAR(50))
 RETURNS CHAR(2)
 as begin
@@ -117,3 +117,24 @@ return @tipo_inscricao
 
 end
 
+	-- função tipo de inscrição
+
+create function FN_TIPO_INSCRIÇÃOII (@Cliente numeric(15))
+RETURNS CHAR(2)
+as begin
+	declare @tipo_inscricao char(2)
+	declare @inscricao_federal varchar(50)
+
+	select @inscricao_federal = INSCRICAO_FEDERAL
+	from ENTIDADES
+	where ENTIDADE = @Cliente
+
+set @INSCRICAO_FEDERAL = replace(replace( replace ( @INSCRICAO_FEDERAL, '.' , ''), '-', ''),'/' ,'')
+set @tipo_inscricao = case len(@INSCRICAO_FEDERAL)
+								when 14 then 'PJ'
+								when 11 then 'PF'
+								else 'ND' 
+							 end 
+return @tipo_inscricao 
+
+end
