@@ -167,7 +167,7 @@ execute usp_retorna_clientes
 exec usp_retorna_clientes
 */
 
-create procedure USP_retorna_clientes_parametros(@uf char(2))
+alter procedure USP_retorna_clientes_parametros(@uf char(2))
 as begin 
 select a.ENTIDADE				as entidade
 	 , a.NOME					as nome 
@@ -181,5 +181,6 @@ from ENTIDADES a
 left join CLASSIFICACOES_CLIENTES b on a.CLASSIFICACAO_CLIENTE = b.CLASSIFICACAO_CLIENTE
 left join ENDERECOS	c				on a.ENTIDADE = c.ENTIDADE
 left join ESTADOS d					on c.ESTADO = d.ESTADO
- where c.ESTADO = @uf
+ where (c.ESTADO = @uf or @uf is null)
 end
+--drop procedure  USP_retorna_clientes_parametros
