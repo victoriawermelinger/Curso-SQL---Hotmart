@@ -138,3 +138,7 @@ set @tipo_inscricao = case len(@INSCRICAO_FEDERAL)
 return @tipo_inscricao 
 
 end
+
+select [dbo].[FN_MASCARA_CPF] (123456789) 
+
+-- procedures são frequentemente usados para se referir a blocos de código que realizam uma tarefa específica. Eles podem ser chamados em diferentes partes de um programa para executar a mesma operação.
