@@ -305,3 +305,23 @@ SELECT 'Tabela atualizada com sucesso'
 
 --ABRIR UMA NOVA CONSULTA E TESTAR 
 EXEC USP_ATUALIZA_CLIENTES_CONSOLIDADO
+
+-- criando views ( é um objeto de banco de dados que representa uma consulta armazenada. Ele permite que você armazene uma consulta SQL comum no banco de dados, de modo que você possa reutilizá-la facilmente. As views podem conter joins, funções e cláusulas where, facilitando o acesso aos dados de maneira organizada e segura. Elas são úteis para simplificar consultas complexas e garantir a segurança dos dados, controlando quais informações estão disponíveis para quais usuários.)
+create view VW_CLIENTES_CONSOLIDADO
+AS
+select a.ENTIDADE				as entidade
+	 , a.NOME					as nome 
+	 , a.NOME_FANTASIA			as nome_fantasia
+	 , a.INSCRICAO_FEDERAL		as inscricao_federal
+	 , b.DESCRICAO				as classif_cliente
+	 , c.CIDADE					as cidade
+	 , d.NOME					as estado 
+	 , c.ESTADO					as UF
+from ENTIDADES					  a 
+left join CLASSIFICACOES_CLIENTES b on a.CLASSIFICACAO_CLIENTE = b.CLASSIFICACAO_CLIENTE
+left join ENDERECOS				  c	on a.ENTIDADE = c.ENTIDADE
+left join ESTADOS				  d	on c.ESTADO = d.ESTADO
+-------------------------------------------
+SELECT * FROM VW_CLIENTES_CONSOLIDADO
+WHERE UF IS NOT NULL
+ ORDER BY ENTIDADE
