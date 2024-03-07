@@ -186,7 +186,10 @@ end
 --drop procedure  USP_retorna_clientes_parametros
 
 --Criando procedures sem retorno
-
+if OBJECT_ID('tbl_clientes') is null
+begin
+-- criando tabela de clintes consolidado
+-- APENAS SER ELA NÃO EXIXTIR 
 create table tbl_clientes(
   ENTIDADE			NUMERIC(15)
 , NOME				VARCHAR(80)
@@ -198,4 +201,29 @@ create table tbl_clientes(
 , UF				CHAR(2)
 )
 
-select * from tbl_clientes 
+end 
+
+-- populando tabela de clientes consolidado
+insert into tbl_clientes(
+  ENTIDADE			
+, NOME				
+, NOME_FANTASIA		
+, INSCRICAO_FEDERAL 
+, CLASSIFIVACAO		
+, CIDADE			
+, ESTADO			
+, UF				
+)
+
+select a.ENTIDADE				as entidade
+	 , a.NOME					as nome 
+	 , a.NOME_FANTASIA			as nome_fantasia
+	 , a.INSCRICAO_FEDERAL		as inscricao_federal
+	 , b.DESCRICAO				as classif_cliente
+	 , c.CIDADE					as cidade
+	 , d.NOME					as estado 
+	 , c.ESTADO					as UF
+from ENTIDADES					  a 
+left join CLASSIFICACOES_CLIENTES b on a.CLASSIFICACAO_CLIENTE = b.CLASSIFICACAO_CLIENTE
+left join ENDERECOS				  c	on a.ENTIDADE = c.ENTIDADE
+left join ESTADOS				  d	on c.ESTADO = d.ESTADO
