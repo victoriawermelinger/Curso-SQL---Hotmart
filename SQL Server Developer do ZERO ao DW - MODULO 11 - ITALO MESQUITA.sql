@@ -184,3 +184,18 @@ left join ESTADOS d					on c.ESTADO = d.ESTADO
  where (c.ESTADO = @uf or @uf is null)
 end
 --drop procedure  USP_retorna_clientes_parametros
+
+--Criando procedures sem retorno
+
+create table tbl_clientes(
+  ENTIDADE			NUMERIC(15)
+, NOME				VARCHAR(80)
+, NOME_FANTASIA		VARCHAR(60)
+, INSCRICAO_FEDERAL VARCHAR(19)
+, CLASSIFIVACAO		VARCHAR(80)
+, CIDADE			VARCHAR(80)
+, ESTADO			VARCHAR(80)
+, UF				CHAR(2)
+)
+
+select * from tbl_clientes 
