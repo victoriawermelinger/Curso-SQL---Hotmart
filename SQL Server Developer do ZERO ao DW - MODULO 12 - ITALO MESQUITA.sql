@@ -47,8 +47,12 @@ join ENTIDADES					b on a.CAIXA = b.ENTIDADE
 join EMPRESAS_USUARIAS			c on a.EMPRESA = c. EMPRESA_USUARIA
 group by b.NOME , c.NOME_FANTASIA
 
-/* DIMENSOES */
+/* DIMENSOES = Sao infomacoes que completa o fato */
 
-/* FATOS */
+/* FATOS - fato e a infomacao de fato que acontece 
+VENDENDOR 
+PRODUTO
+CLIENTE
+TIPO DE PEDIDO */
 
 
