@@ -38,3 +38,17 @@ Em resumo, enquanto os Data Warehouses servem como repositórios abrangentes de d
 análise de dados, atendendo às necessidades específicas de departamentos ou grupos de usuários dentro de uma organização.
 */
 
+-- Dimensões x Fatos 
+select b.NOME		as NOME_CLIENTE
+, C.NOME_FANTASIA	as EMPRESA
+, sum(QUANTIDADE)	as QTD_VENDIDO
+from VENDAS_ANALITICAS a
+join ENTIDADES					b on a.CAIXA = b.ENTIDADE
+join EMPRESAS_USUARIAS			c on a.EMPRESA = c. EMPRESA_USUARIA
+group by b.NOME , c.NOME_FANTASIA
+
+/* DIMENSOES */
+
+/* FATOS */
+
+
