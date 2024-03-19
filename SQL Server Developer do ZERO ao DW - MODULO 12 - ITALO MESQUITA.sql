@@ -88,4 +88,38 @@ Em resumo, a área de Stage desempenha um papel fundamental no processo de prepar
 fornecendo um ambiente controlado e isolado para processamento intermediário antes que os dados sejam carregados em seus destinos finais para análise e uso operacional.
 */
 
+-- Criando database STAGE
+CREATE DATABASE PBS_PROCFIT_ST
+--Mapeando campos para dados do cliente ainda na database PBS_PROCFIT_DADOS
 
+SELECT a.ENTIDADE
+, a.NOME
+, a.NOME_FANTASIA
+, b.DESCRICAO AS NOME_CLASSIFICACAO
+, c.CIDADE
+, c.ESTADO AS UF
+, d.NOME AS ESTADO
+FROM ENTIDADES					  a
+LEFT JOIN CLASSIFICACOES_CLIENTES b on a.CLASSIFICACAO_CLIENTE = b.CLASSIFICACAO_CLIENTE
+LEFT JOIN ENDERECOS				  c	on a.ENTIDADE			   = c.ENTIDADE
+LEFT JOIN ESTADOS				  d	on c.ESTADO				   = d.ESTADO
+
+/* TABELA DE ENTIDADE NO ST 
+ENTIDADE
+NOME
+NOME_FANTASIA
+CLASSIFICACAO_CLIENTE
+*/
+/* TABELA DE CLASSIFICACAO_CLIENTES NO ST
+CLASSIFICACAO_CLIENTE
+DESCRICAO
+*/
+/* TABELA DE ENDERECO NO ST 
+ENTIDADE
+CIDADE
+UF
+*/
+/* TABELA DE ESTADOS NO ST
+UF
+ESTADO (DESCRIÇÃO DA UF)
+*/
