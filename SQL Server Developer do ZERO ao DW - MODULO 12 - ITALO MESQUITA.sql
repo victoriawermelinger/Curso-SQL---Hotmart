@@ -124,3 +124,22 @@ UF
 ESTADO (DESCRIÇÃO DA UF)
 */
 -- VER ARQUIVOS SEPARADOS. 
+/* 
+ST_CLIENTES
+ST_CLASSIFICACAO_CLIENTE
+ST_CLIENTES_ENDERECO
+ST_CLIENTES_ESTADO
+USP_ST_CARGA_CLIENTE
+*/
+
+--Esquema Estelar x Floco de Neve: A principal diferença entre esses dois é que um esquema em floco de neve contém dimensões normalizadas, enquanto um esquema em estrela contém dimensões desnormalizadas.
+
+SELECT * FROM VENDAS_ANALITICAS
+
+--DIMESAO EMPRESA 
+--DIMESAO CALENDARIO 
+--DIMESAO PRODUTO
+--DIMESAO VENDEDOR 
+--DIMESAO CLIENTE(ST-ok)
+--FATO VENDA
+
