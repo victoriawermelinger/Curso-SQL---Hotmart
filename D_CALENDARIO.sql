@@ -27,15 +27,13 @@ SELECT [DATA]											 AS [DATA]
 	, DATEFROMPARTS (YEAR([DATA]), MONTH ([DATA]), 1)	 AS DATA_INI_MES
 	, EOMONTH ([DATA])									 AS DATA_FIM_MES
 	, DAY(EOMONTH ([DATA]))								 AS DIAS_DO_MES -- DATEPART(dd, EOMONTH ([DATA])) 
-	
+	, CONCAT(
+			YEAR([DATA]),
+			 CONCAT(
+			  REPLICATE('0', 2 -LEN ( MONTH([DATA]))),
+			   MONTH([DATA]) ))							AS ANO_MES 
+	, DAY([DATA])										AS DIA -- DATEPART(dd, EOMONTH ([DATA])) 
+
+			  
+
 FROM DATAS
-
-
-
-
-
-
-
-
-
-
