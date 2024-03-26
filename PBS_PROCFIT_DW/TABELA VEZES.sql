@@ -1,0 +1,14 @@
+
+CREATE TABLE VEZES (SEQUENCIA INT)
+
+DECLARE @INICIO INT = 1 -- Declarando e inicializando a variável @INICIO
+DECLARE @FIM INT = 99999 -- Declarando e inicializando a variável @FIM
+
+WHILE  @INICIO <= @FIM
+BEGIN
+	INSERT INTO VEZES ( SEQUENCIA ) VALUES( @INICIO );
+	SET @INICIO = @INICIO + 1
+END
+
+SELECT * FROM VEZES
+
