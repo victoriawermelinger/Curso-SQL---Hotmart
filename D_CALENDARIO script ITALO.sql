@@ -64,4 +64,3 @@ FROM
     DATAS A WITH (NOLOCK)
 ORDER BY 
     A.[DATA];
-
